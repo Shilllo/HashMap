@@ -154,7 +154,7 @@ class LinkedList {
   }
 }
 
-class HashMap {
+class HashSet {
   constructor(initialLength = 16) {
     this.table = new Array(initialLength).fill(null);
     this.size = 0;
@@ -174,7 +174,7 @@ class HashMap {
     let index = this.hash(key);
     if (!this.table[index]) {
       let element = new LinkedList();
-      element.append({ key, value });
+      element.append(key);
       this.table[index] = element;
       this.size++;
     } else {
@@ -182,15 +182,14 @@ class HashMap {
 
       let link = this.table[index].head.nextNode;
       while (link != null) {
-        if (link.value.key == key) {
-          link.value.value = value;
+        if (link.value == key) {
           IsItCollision = false;
           break;
         }
         link = link.nextNode;
       }
       if (IsItCollision) {
-        this.table[index].append({ key, value });
+        this.table[index].append(key);
         this.size++;
       }
     }
@@ -200,9 +199,9 @@ class HashMap {
   get(key) {
     if (
       this.table[this.hash(key)] &&
-      this.table[this.hash(key)].head.nextNode.value.key == key
+      this.table[this.hash(key)].head.nextNode.value == key
     ) {
-      console.log(this.table[this.hash(key)].head.nextNode.value.value);
+      console.log(this.table[this.hash(key)].head.nextNode.value);
     } else {
       console.log(null);
     }
@@ -211,7 +210,7 @@ class HashMap {
   has(key) {
     if (
       this.table[this.hash(key)] &&
-      this.table[this.hash(key)].head.nextNode.value.key == key
+      this.table[this.hash(key)].head.nextNode.value == key
     ) {
       console.log(true);
     } else {
@@ -225,7 +224,7 @@ class HashMap {
       let link = this.table[index].head.nextNode;
       let indexElement = 0;
       while (link != null) {
-        if (link.value.key == key) {
+        if (link.value == key) {
           this.table[index].removeAt(indexElement);
           this.size--;
           if (this.table[index].head.nextNode == null) {
@@ -259,35 +258,7 @@ class HashMap {
       if (this.table[i]) {
         let link = this.table[i].head.nextNode;
         while (link != null) {
-          array.push(link.value.key);
-          link = link.nextNode;
-        }
-      }
-    }
-    return console.log(array);
-  }
-
-  values() {
-    let array = [];
-    for (let i = 0; i < this.table.length; i++) {
-      if (this.table[i]) {
-        let link = this.table[i].head.nextNode;
-        while (link != null) {
-          array.push(link.value.value);
-          link = link.nextNode;
-        }
-      }
-    }
-    return console.log(array);
-  }
-
-  entries() {
-    let array = [];
-    for (let i = 0; i < this.table.length; i++) {
-      if (this.table[i]) {
-        let link = this.table[i].head.nextNode;
-        while (link != null) {
-          array.push([link.value.key, link.value.value]);
+          array.push(link.value);
           link = link.nextNode;
         }
       }
@@ -296,27 +267,14 @@ class HashMap {
   }
 }
 
-let table = new HashMap();
+let table = new HashSet();
 
-table.set("Simon", "89452461241");
-table.set("Igor", "89167683865");
-table.set("Anna", "89264357654");
-table.set("Dmitry", "89163246533");
+table.set("Simon");
+table.set("Igor");
+table.set("Anna1");
 
 // table.get("Igor");
-// table.get("Sasha");
 
-// table.has("Anna");
-// table.has("Sasha");
-
-// table.remove("Anna");
-
-// table.length();
-
-// table.clear();
+// table.remove("Simon");
 
 // table.keys();
-
-// table.values();
-
-// table.entries();

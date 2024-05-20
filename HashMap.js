@@ -296,12 +296,12 @@ class HashMap {
   }
 }
 
-let table = new HashMap();
+// let table = new HashMap();
 
-table.set("Simon", "89452461241");
-table.set("Igor", "89167683865");
-table.set("Anna", "89264357654");
-table.set("Dmitry", "89163246533");
+// table.set("Simon", "89452461241");
+// table.set("Igor", "89167683865");
+// table.set("Anna", "89264357654");
+// table.set("Dmitry", "89163246533");
 
 // table.get("Igor");
 // table.get("Sasha");
